@@ -19,7 +19,6 @@ pip                       18.1                  py37_1000    conda-forge
 pluggy                    0.8.1                      py_0    conda-forge
 py                        1.7.0                      py_0    conda-forge
 pytest                    4.1.1                 py37_1000    conda-forge
-python                    3.7.1             hc182675_1000    conda-forge
 python-dateutil           2.7.5                      py_0    conda-forge
 pytz                      2018.9                     py_0    conda-forge
 setuptools                40.6.3                   py37_0    conda-forge
