@@ -1,0 +1,31 @@
+# packages in environment at C:\Users\ihars\Anaconda3\envs\menuP27a:
+#
+# Name                    Version                   Build  Channel
+atomicwrites              1.2.1                      py_0    conda-forge
+attrs                     18.2.0                     py_0    conda-forge
+blas                      1.0                         mkl  
+certifi                   2018.11.29            py37_1000    conda-forge
+colorama                  0.4.1                      py_0    conda-forge
+icc_rt                    2019.0.0             h0cc432a_1  
+intel-openmp              2019.1                      144  
+mkl                       2018.0.3                      1  
+mkl_fft                   1.0.6            py37hdbbee80_0  
+mkl_random                1.0.1            py37h77b88f5_1  
+more-itertools            4.3.0                 py37_1000    conda-forge
+numpy                     1.15.4           py37ha559c80_0  
+numpy-base                1.15.4           py37h8128ebf_0  
+pandas                    0.23.4          py37h830ac7b_1000    conda-forge
+pip                       18.1                  py37_1000    conda-forge
+pluggy                    0.8.1                      py_0    conda-forge
+py                        1.7.0                      py_0    conda-forge
+pytest                    4.1.1                 py37_1000    conda-forge
+python                    3.7.1             hc182675_1000    conda-forge
+python-dateutil           2.7.5                      py_0    conda-forge
+pytz                      2018.9                     py_0    conda-forge
+setuptools                40.6.3                   py37_0    conda-forge
+six                       1.12.0                py37_1000    conda-forge
+vc                        14                            0    conda-forge
+vs2015_runtime            14.0.25420                    0    conda-forge
+wheel                     0.32.3                   py37_0    conda-forge
+wincertstore              0.2                   py37_1002    conda-forge
+xlrd                      1.2.0                      py_0    conda-forge
