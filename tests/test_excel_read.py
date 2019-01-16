@@ -16,7 +16,13 @@ def test_read_existing_files():
         pytest.fail("Unexpected FileNotFound error.")
 
 
-def test_read_all_tabs():
-    mex = MenuExtractor(Path('data/Меню с 02.04 по 06.04.2018г.xls'))
-    assert len(mex.excel_menus) == 5
+@pytest.mark.parametrize("file_path,menus_num", [
+    ("data/Меню с 02.04 по 06.04.2018г.xls", 5),
+    ("data/Меню с 7-11 май.xls", 4),
+    ("data/Меню с 08-11  января.xls", 4),
+    ("data/Меню с 29.01 по 02.02.2018г.xls", 5),
+])
+def test_read_all_tabs(file_path, menus_num):
+    mex = MenuExtractor(Path(file_path))
+    assert len(mex.excel_menus) == menus_num
 
