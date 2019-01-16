@@ -15,3 +15,8 @@ def test_read_existing_files():
     except FileNotFoundError:
         pytest.fail("Unexpected FileNotFound error.")
 
+
+def test_read_all_tabs():
+    mex = MenuExtractor(Path('data/Меню с 02.04 по 06.04.2018г.xls'))
+    assert len(mex.excel_menus) == 5
+
