@@ -1,4 +1,4 @@
-![build status](https://travis-ci.com/ihar/menuP27a.svg?token=pkUi1DDzuaxnjn6U7NLs&branch=master)
+[![Build Status](https://travis-ci.com/ihar/menuP27a.svg?token=pkUi1DDzuaxnjn6U7NLs&branch=master)](https://travis-ci.com/ihar/menuP27a)
 
 ## What is going on with menus in a canteen
 
