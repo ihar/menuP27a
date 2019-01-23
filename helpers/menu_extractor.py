@@ -27,7 +27,8 @@ class MenuExtractor:
         self._menu_dates = self._extract_menu_dates()
         # Preprocess each tab of the excel file and generate a dictionary
         # in the menu_key => menu_df dictionary
-        self._menu_dic = {menu_key: self._preprocess_menu(self._excel_data[menu_key]) for menu_key in self._menu_keys}
+        # self._menu_dic = \
+        #     {menu_key: self._preprocess_menu(self._excel_data[menu_key]) for menu_key in self._menu_keys}
 
     @staticmethod
     def _preprocess_menu(df_menu):
@@ -80,7 +81,7 @@ class MenuExtractor:
 
     @property
     def menu_keys(self):
-        return list(self._menu_keys)
+        return self._menu_keys
 
     @property
     def menu_dates(self):
