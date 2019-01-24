@@ -41,3 +41,27 @@ def test_get_menu_keys(file_path, menu_keys):
 def test_get_menu_dates(file_path, menu_dates):
     mex = MenuExtractor(Path(file_path))
     assert mex.menu_dates == menu_dates
+
+
+# Get menus as dictionaries.
+# Keys are tab names, values are preprocessed data frames that have to have three columns
+@pytest.mark.parametrize("file_path,menu_num", [
+    ("data/Меню с 02.04 по 06.04.2018г.xls", 5),
+    ("data/Меню с 7-11 май.xls", 4),
+    ("data/Меню с 08-11  января.xls", 4),
+    ("data/Меню с 29.01 по 02.02.2018г.xls", 5),
+])
+def test_read_menu_count(file_path, menu_num):
+    mex = MenuExtractor(Path(file_path))
+    assert len(mex.menu_data_dic) == menu_num
+
+
+@pytest.mark.parametrize("file_path,menu_rows", [
+    ("data/Меню с 02.04 по 06.04.2018г.xls", 49),
+    ("data/Меню с 7-11 май.xls", 21),
+    ("data/Меню с 08-11  января.xls", 25),
+    ("data/Меню с 29.01 по 02.02.2018г.xls", 50),
+])
+def test_read_menu_rows(file_path, menu_rows):
+    mex = MenuExtractor(Path(file_path))
+    assert mex.menu_data_dic[mex.menu_keys[0]].shape[0] == menu_rows

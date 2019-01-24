@@ -58,7 +58,7 @@ class MenuExtractor:
             fourth_column_values.append(current_type)
         df_menu_processed['Type'] = fourth_column_values
         # Delete the rows with the sections' names:
-        df_menu_processed = df_menu_processed.dropna(axis=0, subset=['Price'])
+        df_menu_processed = df_menu_processed.dropna(axis=0, subset=['Weight', 'Price'], how='all')
         return df_menu_processed
 
     def _extract_menu_dates(self):
