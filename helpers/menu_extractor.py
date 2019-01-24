@@ -27,8 +27,8 @@ class MenuExtractor:
         self._menu_dates = self._extract_menu_dates()
         # Preprocess each tab of the excel file and generate a dictionary
         # in the menu_key => menu_df dictionary
-        # self._menu_dic = \
-        #     {menu_key: self._preprocess_menu(self._excel_data[menu_key]) for menu_key in self._menu_keys}
+        self._menu_dic = \
+            {menu_key: self._preprocess_menu(self._excel_data[menu_key]) for menu_key in self._menu_keys}
 
     @staticmethod
     def _preprocess_menu(df_menu):
@@ -43,6 +43,9 @@ class MenuExtractor:
         df_menu_processed = df_menu.dropna(axis=1, how='all')
         # In case there is empty rows
         df_menu_processed = df_menu_processed.dropna(axis=0, how='all')
+        # In case there are random characters in NA columns, they might not be deleted
+        # Left the first three columns only since all necessary info is in these columns
+        df_menu_processed = df_menu_processed.iloc[:, :3]
         df_menu_processed.columns = ['Food', 'Weight', 'Price']
         # Rows with NA in the last column is the names of a section like
         # "Супы", "Гарниры", "Сладкие блюда" and so on.
