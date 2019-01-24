@@ -18,7 +18,7 @@ class MenuExtractor:
         self._menu_dates = []
         self._menu_dic = {}
         try:
-            self._excel_data = pd.read_excel(str(self.path), sheet_name=None)
+            self._excel_data = pd.read_excel(self.path, sheet_name=None)
             # The menu's title is in the header: self._excel_data.columns[0]
         except FileNotFoundError as err:
             raise err
