@@ -1,9 +1,6 @@
-import sys
 import pandas as pd
 import re
 from datetime import datetime
-
-from pathlib import Path
 
 
 class MenuExtractor:
