@@ -3,7 +3,7 @@ attrs==18.2.0
 certifi==2018.11.29
 colorama==0.4.1
 mkl-fft==1.0.6
-mkl-random==1.0.2
+mkl-random== 1.0.1.1
 more-itertools==4.3.0
 numpy==1.15.4
 pandas==0.23.4
