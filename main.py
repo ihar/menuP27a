@@ -15,4 +15,6 @@ if __name__ == '__main__':
     print(menu_day.shape)
     print(menu_day)
 
+    print(mex.menus_combined.shape)
+
     print("Done.")

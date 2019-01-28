@@ -14,6 +14,7 @@ class MenuExtractor:
         self._menu_keys = []
         self._menu_dates = []
         self._menus_list = []
+        self._menus_combined = []
         try:
             self._excel_data = pd.read_excel(self.path, sheet_name=None)
             # The menu's title is in the header: self._excel_data.columns[0]
@@ -27,6 +28,7 @@ class MenuExtractor:
         self._menus_list = \
             [self._preprocess_menu(self._excel_data[menu_key], menu_key, self._menu_dates[idx])
              for idx, menu_key in enumerate(self._menu_keys)]
+        self._menus_combined = pd.concat(self._menus_list, ignore_index=True, sort=False)
 
     @staticmethod
     def _preprocess_menu(df_menu, menu_key, menu_date):
@@ -95,3 +97,7 @@ class MenuExtractor:
     @property
     def menus_list(self):
         return self._menus_list
+
+    @property
+    def menus_combined(self):
+        return self._menus_combined
