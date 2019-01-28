@@ -53,7 +53,7 @@ def test_get_menu_dates(file_path, menu_dates):
 ])
 def test_read_menu_count(file_path, menu_num):
     mex = MenuExtractor(Path(file_path))
-    assert len(mex.menu_data_dic) == menu_num
+    assert len(mex.menus_list) == menu_num
 
 
 @pytest.mark.parametrize("file_path,menu_rows", [
@@ -64,4 +64,4 @@ def test_read_menu_count(file_path, menu_num):
 ])
 def test_read_menu_rows(file_path, menu_rows):
     mex = MenuExtractor(Path(file_path))
-    assert mex.menu_data_dic[mex.menu_keys[0]].shape[0] == menu_rows
+    assert mex.menus_list[0].shape[0] == menu_rows

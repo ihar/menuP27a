@@ -13,7 +13,7 @@ class MenuExtractor:
         self._excel_data = None
         self._menu_keys = []
         self._menu_dates = []
-        self._menu_dic = {}
+        self._menus_list = []
         try:
             self._excel_data = pd.read_excel(self.path, sheet_name=None)
             # The menu's title is in the header: self._excel_data.columns[0]
@@ -24,16 +24,19 @@ class MenuExtractor:
         self._menu_dates = self._extract_menu_dates()
         # Preprocess each tab of the excel file and generate a dictionary
         # in the menu_key => menu_df dictionary
-        self._menu_dic = \
-            {menu_key: self._preprocess_menu(self._excel_data[menu_key]) for menu_key in self._menu_keys}
+        self._menus_list = \
+            [self._preprocess_menu(self._excel_data[menu_key], menu_key, self._menu_dates[idx])
+             for idx, menu_key in enumerate(self._menu_keys)]
 
     @staticmethod
-    def _preprocess_menu(df_menu):
+    def _preprocess_menu(df_menu, menu_key, menu_date):
         """
         Drop NA columns that exist because menus in Excel files contain merged cells.
         The merged cells cause extra columns in pandas data frames having NA values.
         Those columns' names look like "Unnamed: 1"
         :param df_menu: pandas data frame as result of the pd.read_excel function
+        :param menu_key: tab name from which the menu was taken
+        :param menu_date: date of menu taken from the menu title
         :return: pandas data frame without NA columns and values of the mereged cells moved
         to additional column's value
         """
@@ -56,6 +59,8 @@ class MenuExtractor:
         df_menu_processed['Type'] = fourth_column_values
         # Delete the rows with the sections' names:
         df_menu_processed = df_menu_processed.dropna(axis=0, subset=['Weight', 'Price'], how='all')
+        df_menu_processed['Key'] = menu_key
+        df_menu_processed['Date'] = menu_date
         return df_menu_processed
 
     def _extract_menu_dates(self):
@@ -88,5 +93,5 @@ class MenuExtractor:
         return self._menu_dates
 
     @property
-    def menu_data_dic(self):
-        return self._menu_dic
+    def menus_list(self):
+        return self._menus_list

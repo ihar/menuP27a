@@ -9,9 +9,9 @@ if __name__ == '__main__':
 
     menu_keys = mex.menu_keys
     print(menu_keys)
-    menu_dic = mex.menu_data_dic
+    menus_list = mex.menus_list
     print(menu_keys[0])
-    menu_day = menu_dic[menu_keys[0]]
+    menu_day = menus_list[0]
     print(menu_day.shape)
     print(menu_day)
 
