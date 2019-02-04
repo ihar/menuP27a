@@ -1,6 +1,24 @@
 import re
 
 
+def ingredients_from_food(food):
+    """
+    Extract ingredients from food description
+    :param food: A string, value from the Food column
+    :return: A list of ingredients (strings) or empty list
+    "Салат "Папарать-Кветка"(Говядина,ветчина,помидоры,огурцы)" -> ["говядина", "ветчина", "помидоры", "огурцы"]
+    "Капуста тушеная" -> []
+    """
+    re_ingr = re.compile(r'\(([^\)]+)\)')
+    ingr = re_ingr.findall(food)
+    if ingr:
+        ingr_parts = ingr[0].split(',')
+        ingr_parts = [p.strip().lower() for p in ingr_parts]
+        return ingr_parts
+    else:
+        return []
+
+
 def weight_to_number(weight):
     """
     Convert a value from Weight column into a number
