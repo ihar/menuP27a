@@ -1,6 +1,25 @@
 import re
 
 
+def weight_to_number(weight):
+    """
+    Convert a value from Weight column into a number
+    :param weight: String value, weight as indicated in the respective column
+    :return: a number; "2кусочек" -> 2, "шт." -> 1, "150" -> 150, "бдыщь" -> 1
+    """
+    if 0 == len(weight.strip()):
+        return None
+    weight = weight.replace(",", ".")
+    re_num = re.compile(r'\d+\.?\d?')
+    weight_strings = re_num.findall(weight)
+    # if the string looks like "150/20", then return largest number
+    if weight_strings:
+        weight_num = [float(w) for w in weight_strings]
+        return max(weight_num)
+    else:  # "шт."
+        return 1.0
+
+
 def price_to_number(price):
     """
     Convert a price value into a number
