@@ -1,20 +1,19 @@
-from pathlib import Path
+import os
 
+from glob import glob
 from helpers.menu_extractor import MenuExtractor
 
-FILE_PATH = Path('data/Меню с 7-11 май.xls')
+input_path = './data'
+output_file = 'menu_data.csv'
 
 if __name__ == '__main__':
-    mex = MenuExtractor(FILE_PATH)
-
-    menu_keys = mex.menu_keys
-    print(menu_keys)
-    menus_list = mex.menus_list
-    print(menu_keys[0])
-    menu_day = menus_list[0]
-    print(menu_day.shape)
-    print(menu_day)
-
-    print(mex.menus_combined.shape)
-
+    input_files = glob(os.path.join(input_path, '*.xls*'))
+    print("Files to process: %d" % len(input_files))
+    with open(output_file, 'w',  encoding='utf-8') as f:
+        for fpath in input_files:
+            mex = MenuExtractor(fpath)
+            menu_data = mex.menus_combined
+            menu_data['File'] = os.path.basename(fpath)
+            menu_data.to_csv(f, header=False, index=False)
+            del mex
     print("Done.")
