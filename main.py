@@ -4,7 +4,7 @@ from glob import glob
 from helpers.menu_extractor import MenuExtractor
 
 input_path = './data'
-output_file = 'menu_data.csv'
+output_file = './data/collected_menu_data.csv'
 
 if __name__ == '__main__':
     input_files = glob(os.path.join(input_path, '*.xls*'))
