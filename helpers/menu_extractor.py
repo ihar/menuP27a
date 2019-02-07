@@ -42,6 +42,8 @@ class MenuExtractor:
         :return: pandas data frame without NA columns and values of the mereged cells moved
         to additional column's value
         """
+        if df_menu.empty:
+            return df_menu
         df_menu_processed = df_menu.dropna(axis=1, how='all')
         # In case there is empty rows
         df_menu_processed = df_menu_processed.dropna(axis=0, how='all')
@@ -73,13 +75,17 @@ class MenuExtractor:
         """
         menu_dates = []
         for menu_df in self._excel_data.values():
-            menu_title = menu_df.columns[0]
-            date_str = re.findall(r"\d{2}\.\d{2}\.\d{4}", menu_title)
             try:
-                date_date = datetime.strptime(date_str[0], "%d.%m.%Y").date()
-            except (TypeError, ValueError):
+                menu_title = menu_df.columns[0]
+                date_str = re.findall(r"\d{2}\.\d{2}\.\d{4}", menu_title)
+                try:
+                    date_date = datetime.strptime(date_str[0], "%d.%m.%Y").date()
+                except (TypeError, ValueError):
+                    date_date = ''
+                menu_dates.append(date_date)
+            except IndexError:  # a sheet is empty
                 date_date = ''
-            menu_dates.append(date_date)
+                menu_dates.append(date_date)
         return menu_dates
 
     @property
