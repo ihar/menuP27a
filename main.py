@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 from glob import glob
 from helpers.menu_extractor import MenuExtractor
@@ -17,4 +18,8 @@ if __name__ == '__main__':
             menu_data['File'] = os.path.basename(fpath)
             menu_data.to_csv(f, header=False, index=False)
             del mex
+    # Add a header to the csv file
+    df = pd.read_csv(output_file)
+    df.columns = ['Food', 'Weight', 'Price', 'Type', 'Key', 'Date', 'File']
+    df.to_csv(output_file, index=False)
     print("Done.")
