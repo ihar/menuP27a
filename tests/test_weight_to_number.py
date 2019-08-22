@@ -1,9 +1,11 @@
 import pytest
+import numpy as np
 
 from helpers.postprocessor import weight_to_number
 
 
 @pytest.mark.parametrize("weight_string,weight_number", [
+    (np.nan, None),
     ("", None),
     ("бдыщь!", 1.0),
     ("шт.", 1.0),

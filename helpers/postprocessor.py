@@ -25,7 +25,12 @@ def weight_to_number(weight):
     :param weight: String value, weight as indicated in the respective column
     :return: a number; "2кусочек" -> 2, "шт." -> 1, "150" -> 150, "бдыщь" -> 1
     """
-    if 0 == len(weight.strip()):
+    try:
+        wlen = len(weight.strip())
+    except AttributeError:
+        # if weight is np.nan
+        return None
+    if 0 == wlen:
         return None
     weight = weight.replace(",", ".")
     re_num = re.compile(r'\d+\.?\d?')
@@ -46,8 +51,11 @@ def price_to_number(price):
     """
     re_rub = re.compile(r'(\d+)\s*?руб.*', re.IGNORECASE)
     re_kop = re.compile(r'(\d+)\s*?коп.*', re.IGNORECASE)
-    rub = re_rub.findall(price)
-    kop = re_kop.findall(price)
+    try:
+        rub = re_rub.findall(price)
+        kop = re_kop.findall(price)
+    except TypeError:  # price is null
+        return None
     try:
         rub_num = int(rub[0])
     except IndexError:

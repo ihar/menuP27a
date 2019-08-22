@@ -1,9 +1,11 @@
 import pytest
+import numpy as np
 
 from helpers.postprocessor import price_to_number
 
 
 @pytest.mark.parametrize("price_string,price_number", [
+    (np.nan, None),
     ("", None),
     ("10$", None),
     ("$10.5", None),
