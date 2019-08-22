@@ -4,6 +4,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Source Excel files except severl used for testing
+data/
+!data/Меню с 02.04 по 06.04.2018г.xls
+!data/Меню с 7-11 май.xls
+!data/Меню с 08-11  января.xls
+!data/Меню с 29.01 по 02.02.2018г.xls
+# Output CSV file
+!data/raw_menu_data.csv
+
 # C extensions
 *.so
 
