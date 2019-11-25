@@ -2,3 +2,5 @@ pandas
 xlrd
 jupyter
 matplotlib
+pytest
+requests
