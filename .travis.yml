@@ -1,10 +1,16 @@
 language: python
+
 python:
   - "3.8"
+
 install:
   - pip install -r requirements.txt
+  # Install the codecov pip dependency
+  - pip install pytest-cov
+
 # command to run tests
 script:
-  - python -m pytest
-#after_success:
-#    - bash <(curl -s https://codecov.io/bash)
+  - py.test --cov=menuP27a tests/
+
+after_success:
+  - codecov
